@@ -34,8 +34,8 @@ jobs:
             ${{ runner.os }}-gradle-
 
       # 4. Сборка проекта
-      #- name: Build with Gradle
-       # run: ./gradlew build
+      - name: Build with Gradle
+        run: ./gradlew build
 
       # 5. Сборка APK
       - name: Assemble Debug APK

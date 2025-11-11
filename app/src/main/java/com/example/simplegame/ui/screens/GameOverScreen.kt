@@ -24,7 +24,6 @@ fun GameOverScreen(
     onPlayAgain: () -> Unit,
     onMainMenu: () -> Unit
 ) {
-    // Сохраняем результат в Room только если score > 0
     LaunchedEffect(score) {
         if (score > 0) {
             viewModel.saveScore(score)
@@ -40,25 +39,23 @@ fun GameOverScreen(
     ) {
         Text("Game Over", style = MaterialTheme.typography.headlineMedium)
         Text("Результат: $score")
-        Text(if (isHighScore) "Новый рекорд!" else "Рекорд не побит")
+        Text(if (isHighScore) "Новий рекорд!" else "Рекорд не побитий")
 
-        Text("Загаданная комбинация:")
+        Text("Загадана комбінація:")
         EmojiSequenceField(sequence = targetSequence)
 
-        Text("Твой ответ:")
-        ComparisonField(target = targetSequence, player = playerSequence)
+        Text("Твоя відповідь:")
+        ComparisonField(player = playerSequence)
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            Button(onClick = onPlayAgain) { Text("Играть снова") }
-            OutlinedButton(onClick = onMainMenu) { Text("Главное меню") }
+            Button(onClick = onPlayAgain) { Text("Грати знову") }
+            OutlinedButton(onClick = onMainMenu) { Text("Головне меню") }
         }
     }
 }
 
-// Компонент для сравнения двух последовательностей эмодзи
 @Composable
 fun ComparisonField(
-    target: List<EmojiElement>,
     player: List<EmojiElement>
 ) {
     Row(
